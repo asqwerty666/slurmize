@@ -22,4 +22,4 @@ and save it as *recon_subject.txt*. Now you just simple do,
 
 	./slurmize.pl recon_subject.txt
 
-and the script automagicallly make a directory named _slurm_, creates a separate sbatch script for each subejct and launch it into the schedule manager, creates a warning script that send an email to warn you when the execution of all subjects is over. Output for each separate job it is stored in the _slurm_ directory also, so in case something goes wrong, you can check the output by the job id. 
+and the script automagicallly make a directory named _slurm_, creates a separate sbatch script for each subject and launch it into the schedule manager and creates a warning script that send an email to warn you when the execution of all subjects is over. Output for each separate job it is stored in the _slurm_ directory also, so in case something goes wrong, you can check the output by the job id. 

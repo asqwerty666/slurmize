@@ -4,7 +4,7 @@ This is a very simple perl script that try to expose a very simple way to launch
 
 ## Install
 - Download and run the *install\_slurmace.sh* script
-- put the slurmize.pl script whereever you need it an run it
+- put the slurmize.pl script wherever you need it an run it
 - enjoy
 
 ## usage

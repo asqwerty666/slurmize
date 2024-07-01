@@ -20,7 +20,15 @@ my $wdir = 'slurm';
 ############################################
 ##### No editar a partir de aqui ###########
 ############################################
-my $ifile = $ARGV[0];
+my $debug = 0;
+@ARGV = ("-h") unless @ARGV;
+while (@ARGV and $ARGV[0] =~ /^-/) {
+	$_ = shift;
+	last if /^--$/;
+	if (/^-g/) { $debug = 1;}
+	if (/^-h/) {print "usage: $0 [-g] input_file\n"; exit;}
+}
+my $ifile = shift;
 die "Should supply input file\n" unless $ifile;
 mkdir $wdir;
 my $count = 0;
@@ -31,7 +39,8 @@ my %ptask = ( 'job_name' => $ifile,
 	'mem_per_cpu' => $mem_per_cpu,
 	'time' => $time, 
 	'mailtype' => 'FAIL,TIME_LIMIT,STAGE_OUT',
-	'partition' => $partition,	
+	'partition' => $partition,
+	'debug' => $debug,	
 );
 
 while (<IPDF>) {
@@ -45,10 +54,12 @@ while (<IPDF>) {
 	}
 }
 close IPDF;
-my %warn = ('job_name' => $ifile,         
-	'filename' => $wdir.'/tasks_end.sh',         
-	'mailtype' => 'END',         
-	'output' => $wdir.'/tasks_end',
-	'dependency' => 'singleton' 
-); 
-send2slurm(\%warn); 
+unless ($debug) {
+	my %warn = ('job_name' => $ifile,         
+		'filename' => $wdir.'/tasks_end.sh',         
+		'mailtype' => 'END',         
+		'output' => $wdir.'/tasks_end',
+		'dependency' => 'singleton', 
+	); 
+	send2slurm(\%warn);
+}

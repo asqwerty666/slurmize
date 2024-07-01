@@ -22,4 +22,12 @@ and save it as *recon_subject.txt*. Now you just simple do,
 
 	./slurmize.pl recon_subject.txt
 
-and the script automagicallly make a directory named _slurm_, creates a separate sbatch script for each subject and launch it into the schedule manager and creates a warning script that send an email to warn you when the execution of all subjects is over. Output for each separate job it is stored in the _slurm_ directory also, so in case something goes wrong, you can check the output by the job id. 
+and the script automagicallly make a directory named _slurm_, creates a separate sbatch script for each subject and launch it into the schedule manager and creates a warning script that send an email to warn you when the execution of all subjects is over. Output for each separate job it is stored in the _slurm_ directory also, so in case something goes wrong, you can check the output by the job id.
+
+### Debugging your runs
+
+Sometimes things go wrong when you generate the lsit of jobs to send into the cluster. So toprovide a way to check if everything it is OK before you run your jobs, we added the _-g_option. So if you run,
+
+	./slurmize.pl -g recon_subject.txt 
+
+the script generates all the structure inside the _slurm_ directory but runs nothing. This way you can review what is going to be executed into your nodes.

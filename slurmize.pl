@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use SLURMACE qw(send2slurm);
+use Basename qw(basename);
 ############################################
 ###### Variables de ejecucion ##############
 ############################################
@@ -34,7 +35,7 @@ mkdir $wdir;
 my $count = 0;
 open IPDF, "<$ifile" or die "Could not open input file\n$!\n";
 
-my %ptask = ( 'job_name' => $ifile,
+my %ptask = ( 'job_name' => basename($ifile),
 	'cpus' => $cpus_per_proc,
 	'mem_per_cpu' => $mem_per_cpu,
 	'time' => $time, 
@@ -48,14 +49,14 @@ while (<IPDF>) {
 		$count++;
 		my $ofile = sprintf ("%s_%04d", 'sorder', $count);
 		$ptask{'filename'} = $wdir.'/'.$ofile.'.sh';
-		$ptask{'output'} = $wdir.'/'.$ifile.'.out'; 
+		$ptask{'output'} = $wdir.'/'.basename($ifile).'.out'; 
 		$ptask{'command'} = $_;
 		send2slurm(\%ptask);
 	}
 }
 close IPDF;
 unless ($debug) {
-	my %warn = ('job_name' => $ifile,         
+	my %warn = ('job_name' => basename($ifile),         
 		'filename' => $wdir.'/tasks_end.sh',         
 		'mailtype' => 'END',         
 		'output' => $wdir.'/tasks_end',

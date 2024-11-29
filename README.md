@@ -26,8 +26,8 @@ and the script automagicallly make a directory named _slurm_, creates a separate
 
 ### Debugging your runs
 
-Sometimes things go wrong when you generate the lsit of jobs to send into the cluster. So toprovide a way to check if everything it is OK before you run your jobs, we added the _-g_option. So if you run,
+Sometimes things go wrong when you generate the list of jobs to send into the cluster. So, to provide a way to check if everything it is OK before you run your jobs, we added the *-g* option. If you run,
 
 	./slurmize.pl -g recon_subject.txt 
 
-the script generates all the structure inside the _slurm_ directory but runs nothing. This way you can review what is going to be executed into your nodes.
+the script generates all the structure inside the *slurm* directory but runs nothing. This way you can review what is going to be executed into your nodes.

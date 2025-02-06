@@ -14,8 +14,8 @@ my $cpus_per_proc = 4;
 # Si no estas seguro de lo que haces no lo toques
 my $mem_per_cpu = '4G';
 # Particion del cluster a usar
-# Si no estas seguro,dejarlo en el defaulta
-my $partition = 'fast';
+# Si no estas seguro, dejarlo en blanco
+my $partition = '';
 # Directorio para almacenar los scripts y logs
 my $wdir = 'slurm';
 ############################################
@@ -39,7 +39,7 @@ my %ptask = ( 'job_name' => basename($ifile),
 	'cpus' => $cpus_per_proc,
 	'mem_per_cpu' => $mem_per_cpu,
 	'time' => $time, 
-	'mailtype' => 'FAIL,TIME_LIMIT,STAGE_OUT',
+	'mail_type' => 'FAIL,TIME_LIMIT,STAGE_OUT',
 	'partition' => $partition,
 	'debug' => $debug,	
 );

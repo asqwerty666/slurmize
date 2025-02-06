@@ -26,15 +26,15 @@ and the script automagicallly make a directory named _slurm_, creates a separate
 
 ### Customize to your needs
 
-The script should run minimal in any SLURM cluster but maybe you want to adjust some behaviour like the partition, the execution time or something similar. Notice that you can edit some default variables at the bbeginning of the script that can change the paralelization behaviour. 
+The script should run in any SLURM cluster but maybe you want to adjust some behaviour like the partition, the execution time or something similar. Notice that you can edit some default variables at the beginning of the script that can change the parallelization queue. 
 
-However this cover only a few posibilities. For a depper customization you should see the SLURMACE documentation (https://github.com/asqwerty666/acenip/blob/main/doc/SLURMACE.md) and edit the definition of the %ptask hash inside the script. It should be easy if the already shown syntax is followed. By example, if you want to add an email address diferent from the local user email you can add something like,
+However this cover only a few posibilities. For a depper customization you should see the [SLURMACE documentation](https://github.com/asqwerty666/acenip/blob/main/doc/SLURMACE.md) and edit the definition of the *%ptask* hash inside the script. It should be easy if the already shown syntax is followed. By example, if you want to add an email address different from the local user email you can add something like,
 
 ```
 	'mail_user' => 'another_email@myserver.com',
 ```
 
-to the definition of the parallelization hash as,
+at the end of the definition of the parallelization hash as,
 
 ```
 my %ptask = ( 'job_name' => basename($ifile), 

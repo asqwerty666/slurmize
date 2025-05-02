@@ -1,3 +1,5 @@
+# We moved to [ACE-Genomics/slurmize](https://github.com/ACE-Genomics/slurmize)
+
 # slurmize.pl
 
 This is a very simple perl script that try to expose a very simple way to launch jobs into a SLURM cluster. It uses an external perl module (SLURMACE.pm) so we also provide a shell script to download and install it into your system. 
